@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainha das Lupas</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    :root {
+      --gold: #c8a45d;
+      --gold-strong: #b78d3d;
+      --dark: #111111;
+      --light: #f8f6f2;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --line: #e9e3d8;
+      --shadow: 0 10px 30px rgba(0,0,0,0.10);
+      --shadow-hover: 0 18px 40px rgba(0,0,0,0.16);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--dark);
+      color: #f3efe8;
+      font-size: 14px;
+      padding: 10px 0;
+      text-align: center;
+      letter-spacing: 0.4px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 246, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid var(--gold);
+      background: #fff;
+      padding: 4px;
+    }
+
+    .brand-text h1 {
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--gray);
+      letter-spacing: 0.6px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--dark);
+      font-weight: bold;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-strong);
+    }
+
+    .btn-whats {
+      background: #25d366;
+      color: white;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: bold;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-whats:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .hero {
+      padding: 72px 0 46px;
+      background:
+        radial-gradient(circle at top right, rgba(200,164,93,0.18), transparent 28%),
+        radial-gradient(circle at left center, rgba(200,164,93,0.10), transparent 20%),
+        linear-gradient(180deg, #fbfaf7 0%, #f6f1e8 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(200,164,93,0.14);
+      color: #8b6a2a;
+      border: 1px solid rgba(200,164,93,0.32);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h2 {
+      font-size: 56px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #4b5563;
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-main {
+      background: var(--dark);
+      color: white;
+      padding: 15px 28px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: var(--shadow);
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      background: #222;
+    }
+
+    .btn-outline {
+      border: 1.5px solid #d8c7a0;
+      color: var(--dark);
+      padding: 15px 28px;
+      border-radius: 999px;
+      font-weight: bold;
+      background: rgba(255,255,255,0.8);
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.10);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    .info-strip {
+      padding: 18px 0 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .info-box {
+      background: white;
+      border: 1px solid var(--line);
+      padding: 22px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-box h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      color: var(--gray);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 74px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .section-title .left span {
+      display: inline-block;
+      color: var(--gold-strong);
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .section-title .left h2 {
+      font-size: 38px;
+      line-height: 1.1;
+    }
+
+    .section-title .right {
+      max-width: 520px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.35s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      background: #f0ece4;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(17,17,17,0.88);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+    }
+
+    .price-badge {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .product-content {
+      padding: 22px;
+    }
+
+    .product-content h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .product-content p {
+      color: var(--gray);
+      line-height: 1.7;
+      font-size: 15px;
+      min-height: 78px;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-buy,
+    .btn-view,
+    .btn-pix {
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: 14px;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      border: none;
+      min-width: 140px;
+    }
+
+    .btn-buy {
+      background: var(--dark);
+      color: white;
+    }
+
+    .btn-buy:hover {
+      background: #222;
+    }
+
+    .btn-pix {
+      background: linear-gradient(135deg, #25d366, #1ebe5d);
+      color: white;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.22);
+    }
+
+    .btn-pix:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .btn-view {
+      background: #f3eee5;
+      color: var(--dark);
+      border: 1px solid #e7dcc7;
+    }
+
+    .btn-view:hover {
+      background: #eee4d4;
+    }
+
+    .cta {
+      padding-bottom: 80px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #111 0%, #1c1c1c 100%);
+      color: white;
+      border-radius: 30px;
+      padding: 46px;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .cta-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-text h2 {
+      font-size: 38px;
+      margin-bottom: 14px;
+    }
+
+    .cta-text p {
+      color: #d7d7d7;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #d8d8d8;
+      padding: 36px 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .footer-copy {
+      color: #b3b3b3;
+      font-size: 14px;
+    }
+
+    .float-whats {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #25d366, #1ebe5d);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 14px 35px rgba(37, 211, 102, 0.30);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+
+    .float-whats:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(37, 211, 102, 0.38);
+      filter: brightness(1.03);
+    }
+
+    .float-whats-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.18);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .float-whats-text {
+      white-space: nowrap;
+      letter-spacing: 0.2px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(900px, 100%);
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0,0,0,0.78);
+      color: white;
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      background: #f3f3f3;
+    }
+
+    .modal-content {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .modal-content h3 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .modal-content p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pix-modal-box {
+      width: min(980px, 100%);
+    }
+
+    .pix-area {
+      padding: 30px;
+    }
+
+    .pix-header h3 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .pix-header p {
+      color: var(--gray);
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+
+    .pix-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .pix-qrcode-box {
+      background: #f8f6f2;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .pix-qrcode-box canvas {
+      max-width: 100%;
+      height: auto !important;
+      margin: 0 auto;
+    }
+
+    .pix-qrcode-box span {
+      display: block;
+      margin-top: 12px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .pix-copy-box label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .pix-copy-box textarea {
+      width: 100%;
+      height: 190px;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 14px;
+      resize: none;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .pix-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .info-grid,
+      .catalog-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h2 {
+        font-size: 44px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-grid,
+      .info-grid,
+      .catalog-grid,
+      .pix-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero h2 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-card img {
+        height: 360px;
+      }
+
+      .section-title .left h2,
+      .cta-text h2,
+      .pix-header h3 {
+        font-size: 30px;
+      }
+
+      .modal-image {
+        height: 360px;
+      }
+
+      .modal-content h3 {
+        font-size: 24px;
+      }
+
+      .float-whats {
+        right: 14px;
+        bottom: 14px;
+        padding: 12px 14px;
+      }
+
+      .float-whats-text {
+        display: none;
+      }
+
+      .float-whats-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+        background: transparent;
+      }
+
+      .pix-area {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    Elegância, atitude e estilo em cada detalhe.
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.jpg" alt="Logo Rainha das Lupas">
+        <div class="brand-text">
+          <h1>Rainha das Lupas</h1>
+          <p>CATÁLOGO PREMIUM</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a class="btn-whats" href="https://wa.me/5592985573144" target="_blank">WhatsApp</a>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Coleção exclusiva • atendimento rápido</div>
+        <h2>Óculos que elevam seu visual com presença e personalidade.</h2>
+        <p>
+          Descubra modelos selecionados para quem valoriza estilo, atitude e acabamento diferenciado.
+          Escolha o seu favorito e fale direto no WhatsApp para pedir o seu.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn-main" href="#catalogo">Ver catálogo</a>
+          <a class="btn-outline" href="https://wa.me/5592985573144" target="_blank">Falar com a loja</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="flak.jpg" alt="Óculos em destaque">
+      </div>
+    </div>
+  </section>
+
+  <section class="info-strip">
+    <div class="container info-grid">
+      <div class="info-box">
+        <h3>Visual premium</h3>
+        <p>Modelos com presença forte e acabamento elegante para destacar seu estilo.</p>
+      </div>
+      <div class="info-box">
+        <h3>Compra rápida</h3>
+        <p>Atendimento direto no WhatsApp para facilitar sua escolha e agilizar o pedido.</p>
+      </div>
+      <div class="info-box">
+        <h3>Catálogo organizado</h3>
+        <p>Veja os modelos por nome e preço com visual limpo e profissional.</p>
+      </div>
+      <div class="info-box">
+        <h3>Loja de confiança</h3>
+        <p>Uma apresentação bonita transmite mais valor e aumenta a vontade de comprar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="catalogo">
+    <div class="container">
+      <div class="section-title">
+        <div class="left">
+          <span>Catálogo</span>
+          <h2>Modelos em destaque</h2>
+        </div>
+        <div class="right">
+          Clique em ampliar para ver a galeria de fotos de cada produto.
+        </div>
+      </div>
+
+      <div class="catalog-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <img src="flak.jpg" alt="Flak" onclick="abrirGaleria('flak')">
+            <div class="tag">Esportivo</div>
+            <div class="price-badge">R$ 55,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Flak</h3>
+            <p>Modelo esportivo com presença marcante e visual moderno para quem gosta de atitude.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Flak', 55.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('flak')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Juliet1.jpg" alt="Juliet" onclick="abrirGaleria('juliet')">
+            <div class="tag">Clássico</div>
+            <div class="price-badge">R$ 46,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Juliet</h3>
+            <p>Modelo com personalidade forte e estilo reconhecido, ideal para quem quer se destacar.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Juliet', 46.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('juliet')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="radar ev2.jpg" alt="Radar EV" onclick="abrirGaleria('radarev')">
+            <div class="tag">Premium</div>
+            <div class="price-badge">R$ 70,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Radar EV</h3>
+            <p>Modelo premium com visual imponente, ideal para quem quer elegância com pegada esportiva.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Radar EV', 70.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('radarev')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="radar.jpg" alt="Radar" onclick="abrirGaleria('radar')">
+            <div class="tag">Moderno</div>
+            <div class="price-badge">R$ 70,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Radar</h3>
+            <p>Estilo esportivo com design limpo e forte, ótimo para compor um visual diferenciado.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Radar', 70.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('radar')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="pivete.jpg" alt="Pivete" onclick="abrirGaleria('pivete')">
+            <div class="tag">Casual</div>
+            <div class="price-badge">R$ 40,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Pivete</h3>
+            <p>Modelo casual e acessível, perfeito para quem quer estilo sem abrir mão do custo-benefício.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Pivete', 40.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('pivete')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="ry ban.jpg" alt="Ry-Ban" onclick="abrirGaleria('ryban')">
+            <div class="tag">Elegante</div>
+            <div class="price-badge">R$ 70,00</div>
+          </div>
+          <div class="product-content">
+            <h3>Ry-Ban</h3>
+            <p>Visual sofisticado e acabamento marcante para quem procura presença e estilo refinado.</p>
+            <div class="product-actions">
+              <button class="btn-pix" onclick="abrirPix('Ry-Ban', 70.00)">Comprar no Pix</button>
+              <button class="btn-view" onclick="abrirGaleria('ryban')">Ampliar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contato">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-content">
+          <div class="cta-text">
+            <h2>Quer garantir o seu agora?</h2>
+            <p>
+              Fale direto com a loja pelo WhatsApp, confirme disponibilidade, tire dúvidas e feche o pedido com mais rapidez.
+            </p>
+          </div>
+          <a class="btn-whats" href="https://wa.me/5592985573144" target="_blank">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">Rainha das Lupas</div>
+        <div class="footer-copy">Catálogo online com estilo, presença e atendimento rápido.</div>
+      </div>
+      <div class="footer-copy">© 2026 Rainha das Lupas. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <a class="float-whats" href="https://wa.me/5592985573144" target="_blank" title="Chamar no WhatsApp" aria-label="Chamar no WhatsApp">
+    <span class="float-whats-icon">✆</span>
+    <span class="float-whats-text">WhatsApp</span>
+  </a>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="fecharModal()">×</button>
+      <img id="modalImagem" class="modal-image" src="" alt="">
+      <div class="modal-content">
+        <div>
+          <h3 id="modalTitulo">Produto</h3>
+          <p id="modalContador">Foto 1 de 1</p>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-view" onclick="anteriorImagem()">◀ Anterior</button>
+          <button class="btn-view" onclick="proximaImagem()">Próxima ▶</button>
+          <a id="modalComprar" class="btn-main" href="#" target="_blank">Comprar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="pixModal">
+    <div class="modal-box pix-modal-box">
+      <button class="modal-close" onclick="fecharPix()">×</button>
+
+      <div class="pix-area">
+        <div class="pix-header">
+          <h3 id="pixTitulo">Pagamento via Pix</h3>
+          <p id="pixValor">Valor: R$ 0,00</p>
+        </div>
+
+        <div class="pix-grid">
+          <div class="pix-qrcode-box">
+            <canvas id="pixQrcode"></canvas>
+            <span>Escaneie com o app do seu banco</span>
+          </div>
+
+          <div class="pix-copy-box">
+            <label for="pixCopiaCola">Pix Copia e Cola</label>
+            <textarea id="pixCopiaCola" readonly></textarea>
+
+            <div class="pix-actions">
+              <button class="btn-main" onclick="copiarPix()">Copiar código Pix</button>
+              <a id="pixWhats" class="btn-view" href="#" target="_blank">Enviar comprovante</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const numeroWhatsApp = "5592985573144";
+
+    const pixConfig = {
+  chave: "03922067220",
+  nome: "RAINHA DAS LUPAS",
+  cidade: "PARINTINS"
+};
+
+    const galerias = {
+      flak: {
+        titulo: "Flak",
+        preco: "R$ 55,00",
+        imagens: ["flak.jpg", "flak 1.jpg", "flak 2.jpg", "flak 3.jpg", "flak 4.jpg"]
+      },
+      juliet: {
+        titulo: "Juliet",
+        preco: "R$ 46,00",
+        imagens: ["Juliet1.jpg", "Juliet2.jpg", "Juliet3.jpg", "Juliet4.jpg", "Juliet5.jpeg"]
+      },
+      radarev: {
+        titulo: "Radar EV",
+        preco: "R$ 70,00",
+        imagens: ["radar ev2.jpg", "radar_ev.jpg", "radar_ev1.jpg", "radar_ev3.jpg"]
+      },
+      radar: {
+        titulo: "Radar",
+        preco: "R$ 70,00",
+        imagens: ["radar.jpg", "radar1.jpg", "radar3.jpg", "radar4.jpg", "radar5.jpg", "radar6.jpg", "radar7.jpg", "radar8.jpg", "radar9.jpg"]
+      },
+      pivete: {
+        titulo: "Pivete",
+        preco: "R$ 40,00",
+        imagens: ["pivete.jpg", "pivete1.jpg", "pivete2.jpg", "pivete3.jpg", "pivete4.jpg", "pivete5.jpg"]
+      },
+      ryban: {
+        titulo: "Ry-Ban",
+        preco: "R$ 70,00",
+        imagens: ["ry ban.jpg", "ry ban1.jpg", "ry ban2.jpg", "ry ban3.jpg", "ry ban4.jpg"]
+      }
+    };
+
+    let produtoAtual = null;
+    let indiceAtual = 0;
+
+    function abrirGaleria(chave) {
+      produtoAtual = galerias[chave];
+      indiceAtual = 0;
+      atualizarModal();
+      document.getElementById("modal").classList.add("active");
+    }
+
+    function atualizarModal() {
+      const img = document.getElementById("modalImagem");
+      const titulo = document.getElementById("modalTitulo");
+      const contador = document.getElementById("modalContador");
+      const comprarBtn = document.getElementById("modalComprar");
+
+      img.src = produtoAtual.imagens[indiceAtual];
+      img.alt = produtoAtual.titulo;
+      titulo.innerText = `${produtoAtual.titulo} - ${produtoAtual.preco}`;
+      contador.innerText = `Foto ${indiceAtual + 1} de ${produtoAtual.imagens.length}`;
+
+      const mensagem = `Olá! Tenho interesse no modelo ${produtoAtual.titulo}. Pode me passar mais detalhes?`;
+      comprarBtn.href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    }
+
+    function proximaImagem() {
+      if (!produtoAtual) return;
+      indiceAtual = (indiceAtual + 1) % produtoAtual.imagens.length;
+      atualizarModal();
+    }
+
+    function anteriorImagem() {
+      if (!produtoAtual) return;
+      indiceAtual = (indiceAtual - 1 + produtoAtual.imagens.length) % produtoAtual.imagens.length;
+      atualizarModal();
+    }
+
+    function fecharModal() {
+      document.getElementById("modal").classList.remove("active");
+    }
+
+    function fecharPix() {
+      document.getElementById("pixModal").classList.remove("active");
+    }
+
+    function copiarPix() {
+      const campo = document.getElementById("pixCopiaCola");
+      navigator.clipboard.writeText(campo.value);
+      alert("Código Pix copiado!");
+    }
+
+    function abrirPix(produto, valor) {
+      const payload = gerarPixCopiaECola({
+        chave: pixConfig.chave,
+        nome: pixConfig.nome,
+        cidade: pixConfig.cidade,
+        valor: valor,
+        descricao: produto
+      });
+
+      document.getElementById("pixTitulo").innerText = `Pagamento Pix - ${produto}`;
+      document.getElementById("pixValor").innerText = `Valor: R$ ${valor.toFixed(2).replace(".", ",")}`;
+      document.getElementById("pixCopiaCola").value = payload;
+
+      const mensagem = `Olá! Acabei de pagar o modelo ${produto} via Pix no valor de R$ ${valor.toFixed(2).replace(".", ",")}.`;
+      document.getElementById("pixWhats").href =
+        `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+      const canvas = document.getElementById("pixQrcode");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      QRCode.toCanvas(canvas, payload, {
+        width: 280,
+        margin: 2
+      }, function (error) {
+        if (error) console.error(error);
+      });
+
+      document.getElementById("pixModal").classList.add("active");
+    }
+
+    function formatField(id, value) {
+      const size = String(value.length).padStart(2, "0");
+      return id + size + value;
+    }
+
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let c = 0; c < str.length; c++) {
+        crc ^= str.charCodeAt(c) << 8;
+        for (let i = 0; i < 8; i++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = (crc << 1) ^ 0x1021;
+          } else {
+            crc = crc << 1;
+          }
+          crc &= 0xFFFF;
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, "0");
+    }
+
+    function gerarPixCopiaECola({ chave, nome, cidade, valor, descricao }) {
+      const gui = formatField("00", "br.gov.bcb.pix");
+      const key = formatField("01", chave);
+      const desc = descricao ? formatField("02", descricao) : "";
+      const merchantAccount = formatField("26", gui + key + desc);
+
+      const payloadFormat = formatField("00", "01");
+      const pointOfInitiation = formatField("01", "12");
+      const merchantCategory = formatField("52", "0000");
+      const transactionCurrency = formatField("53", "986");
+      const transactionAmount = formatField("54", valor.toFixed(2));
+      const countryCode = formatField("58", "BR");
+      const merchantName = formatField("59", nome.substring(0, 25));
+      const merchantCity = formatField("60", cidade.substring(0, 15));
+      const additionalData = formatField("62", formatField("05", "***"));
+
+      const semCRC =
+        payloadFormat +
+        pointOfInitiation +
+        merchantAccount +
+        merchantCategory +
+        transactionCurrency +
+        transactionAmount +
+        countryCode +
+        merchantName +
+        merchantCity +
+        additionalData +
+        "6304";
+
+      const crc = crc16(semCRC);
+      return semCRC + crc;
+    }
+
+    window.addEventListener("click", function(e) {
+      const modal = document.getElementById("modal");
+      const pixModal = document.getElementById("pixModal");
+
+      if (e.target === modal) {
+        fecharModal();
+      }
+
+      if (e.target === pixModal) {
+        fecharPix();
+      }
+    });
+  </script>
+</body>
+</html>
