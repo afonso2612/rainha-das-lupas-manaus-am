@@ -6,6 +6,42 @@
   <title>Rainha das Lupas</title>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
+  
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-centro {
+  animation: fadeUp 1s ease forwards;
+}
+
+.card {
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+.card:nth-child(8) { animation-delay: 0.8s; }
+
+    .subtitulo {
+  font-size: 18px;
+  opacity: 0.85;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
     :root {
       --bg: #0f172a;
       --bg-2: #111827;
@@ -285,6 +321,15 @@
     }
 
     .card {
+      .card {
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
       background: var(--card);
       color: var(--text);
       border-radius: var(--radius);
@@ -383,8 +428,9 @@
     }
 
     .buy {
-      background: linear-gradient(135deg, var(--green), var(--green-2));
-      color: white;
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  color: white;
+  font-weight: bold;
     }
 
     .pix {
@@ -610,6 +656,10 @@
         <img src="logo.jpg" alt="Logo Rainha das Lupas">
         <div>
           <h2>Rainha das Lupas</h2>
+<p class="subtitulo">
+  O império do estilo no seu rosto
+  
+</p>
           <p>Óculos estilosos com atendimento rápido no WhatsApp</p>
         </div>
       </div>
@@ -697,55 +747,66 @@
     const PIX_CHAVE = '03922067220';
 
     const produtos = [
-      {
-        nome: 'Oakley Flak',
-        preco: 55.00,
-        descricao: 'Modelo esportivo, leve e estiloso para o dia a dia e atividades ao ar livre.',
-        imagens: ['flak.jpg', 'flak 1.jpg', 'flak 2.jpg', 'flak 3.jpg', 'flak 4.jpg']
-      },
-      {
-        nome: 'Oakley Juliet',
-        preco: 46.00,
-        descricao: 'Visual marcante e elegante, perfeito para quem busca presença e estilo.',
-        imagens: ['Juliet.jpg', 'Juliet1.jpg', 'Juliet2.jpg', 'Juliet3.jpg', 'Juliet4.jpg', 'Juliet5.jpg']
-      },
-      {
-        nome: 'Oakley Radar EV',
-        preco: 70.00,
-        descricao: 'Óculos de performance com design moderno e excelente presença visual.',
-        imagens: ['radar.jpg', 'radar ev2.jpg', 'radar_ev.jpg', 'radar_ev1.jpg', 'radar_ev3.jpg', 'radar_reve.jpg']
-      },
-      {
-        nome: 'Ray-Ban Clássico',
-        preco: 60.00,
-        descricao: 'Modelo tradicional com ótima combinação para looks casuais e sofisticados.',
-        imagens: ['ray ban.jpg', 'ray ban1.jpg', 'ray ban2.jpg', 'ray ban3.jpg', 'ray ban4.jpg']
-      },
-      {
-        nome: 'Pivete',
-        preco: 50.00,
-        descricao: 'Modelo estiloso com pegada jovem e visual diferenciado.',
-        imagens: ['pivete.jpg', 'pivete1.jpg', 'pivete2.jpg', 'pivete3.jpg', 'pivete4.jpg', 'pivet5.jpg']
-      },
-      {
-        nome: 'Óculos de Sol Premium',
-        preco: 65.00,
-        descricao: 'Seleção de modelos premium com acabamento bonito e visual moderno.',
-        imagens: ['oculos_de_sol.jpg', 'oculos_de_sol1.jpg', 'oculos_de_sol3.jpg']
-      },
-      {
-        nome: 'Óculos Miumiu',
-        preco: 58.00,
-        descricao: 'Modelo fashion para quem quer destaque, sofisticação e presença.',
-        imagens: ['oculos de sol miumiu.jpg', 'oculos de sol miumiu1.jpg', 'oculos de sol miumiu2.jpg', 'oculos de sol miumiu3.jpg']
-      },
-      {
-        nome: 'Óculos Prata',
-        preco: 62.00,
-        descricao: 'Modelo elegante com armação marcante e acabamento diferenciado.',
-        imagens: ['Óculos prata.jpg', 'Óculos prata1.jpg']
-      }
-    ];
+  {
+    nome: 'Oakley Flak',
+    preco: 55.00,
+    descricao: 'Modelo esportivo, leve e estiloso para o dia a dia e atividades ao ar livre.',
+    imagens: ['flak.jpg', 'flak 1.jpg', 'flak 2.jpg', 'flak 3.jpg', 'flak 4.jpg']
+  },
+  {
+    nome: 'Oakley Juliet',
+    preco: 80.00,
+    descricao: 'Visual marcante e elegante, perfeito para quem busca presença e estilo.',
+    imagens: ['Juliet.jpg', 'Juliet1.jpg', 'Juliet2.jpg', 'Juliet3.jpg', 'Juliet4.jpg', 'Juliet5.jpeg']
+  },
+  {
+    nome: 'Oakley Radar EV',
+    preco: 70.00,
+    descricao: 'Óculos de performance com design moderno e excelente presença visual.',
+    imagens: ['radar.jpg', 'radar ev2.jpg', 'radar_ev.jpg', 'radar_ev1.jpg', 'radar_ev3.jpg', 'radar_reve.jpg']
+  },
+  {
+    nome: 'Radar Linha Extra',
+    preco: 72.00,
+    descricao: 'Variações da linha Radar com visual marcante e lentes chamativas.',
+    imagens: ['radar1.jpg', 'radar3.jpg', 'radar4.jpg', 'radar5.jpg', 'radar6.jpg', 'radar7.jpg', 'radar8.jpg', 'radar9.jpg']
+  },
+  {
+    nome: 'Ray-Ban Clássico',
+    preco: 70.00,
+    descricao: 'Modelo tradicional com ótima combinação para looks casuais e sofisticados.',
+    imagens: ['ray ban.jpg', 'ray ban1.jpg', 'ray ban2.jpg', 'ray ban3.jpg', 'ray ban4.jpg']
+  },
+  {
+    nome: 'Pivete',
+    preco: 50.00,
+    descricao: 'Modelo estiloso com pegada jovem e visual diferenciado.',
+    imagens: ['pivete.jpg', 'pivete1.jpg', 'pivete2.jpg', 'pivete3.jpg', 'pivete4.jpg', 'pivet5.jpg']
+  },
+  {
+  nome: 'Óculos de Sol Premium',
+  preco: 65.00,
+  descricao: 'Seleção de modelos premium com acabamento bonito e visual moderno.',
+  imagens: ['oculod_de_sol1.jpg', 'oculos_de_sol3.jpg', 'oculod_de_sol1.jpg']
+  },
+   {
+    nome: 'Óculos Miumiu',
+    preco: 58.00,
+    descricao: 'Modelo fashion para quem quer destaque, sofisticação e presença.',
+    imagens: [
+      'oculos de sol miumiu.jpg',
+      'oculos de sol miumiu1.jpg',
+      'oculos de sol miumiu2.jpg',
+      'oculos de sol miumiu3.jpg'
+    ]
+  },
+  {
+    nome: 'Óculos Prata',
+    preco: 62.00,
+    descricao: 'Modelo elegante com armação marcante e acabamento diferenciado.',
+    imagens: ['Óculos prata.jpg', 'Óculos prata1.jpg']
+  }
+];
 
     const grid = document.getElementById('productGrid');
     const modal = document.getElementById('productModal');
