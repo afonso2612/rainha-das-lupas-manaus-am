@@ -1,188 +1,196 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rainha das Lupas</title>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <style>
-    :root {
-      --gold: #c8a45d;
-      --gold-strong: #b78d3d;
-      --dark: #111111;
-      --light: #f8f6f2;
-      --white: #ffffff;
-      --gray: #6b7280;
-      --line: #e9e3d8;
-      --shadow: 0 10px 30px rgba(0,0,0,0.10);
-      --shadow-hover: 0 18px 40px rgba(0,0,0,0.16);
-    }
+<img src="logo.jpg" class="logo">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+export default function JAInformaticaSite() {
+  const services = [
+    {
+      title: "Manutenção de Computadores",
+      description: "Diagnóstico, limpeza, formatação, upgrade e otimização para PCs e notebooks.",
+      icon: "💻",
+    },
+    {
+      title: "Suporte Técnico",
+      description: "Atendimento para residências, empresas e pequenos negócios com solução rápida.",
+      icon: "🛠️",
+    },
+    {
+      title: "Redes e Internet",
+      description: "Configuração de roteadores, redes Wi‑Fi, cabeamento e estabilidade de conexão.",
+      icon: "🌐",
+    },
+    {
+      title: "Câmeras e Segurança",
+      description: "Instalação e configuração de câmeras, DVR e monitoramento básico.",
+      icon: "📹",
+    },
+    {
+      title: "Impressoras",
+      description: "Limpeza, manutenção preventiva e correção de falhas em impressoras.",
+      icon: "🖨️",
+    },
+    {
+      title: "Atendimento Personalizado",
+      description: "Soluções sob medida conforme a necessidade do cliente, com clareza e confiança.",
+      icon: "🤝",
+    },
+  ];
 
-    html {
-      scroll-behavior: smooth;
-    }
+  const highlights = [
+    "Atendimento rápido",
+    "Confiança e transparência",
+    "Soluções para casa e empresa",
+    "Suporte técnico especializado",
+  ];
 
-    body {
-      background: var(--light);
-      color: var(--dark);
-    }
+  return (
+    <div className="min-h-screen bg-slate-950 text-white">
+      <header className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute -top-24 left-[-10%] h-72 w-72 rounded-full bg-cyan-500 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-blue-700 blur-3xl" />
+        </div>
 
-    a {
-      text-decoration: none;
-    }
+        <div className="relative mx-auto max-w-7xl px-6 py-8">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-3xl">
+              <div className="mb-4 inline-flex items-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1 text-sm text-cyan-300">
+                Tecnologia • Suporte • Soluções Inteligentes
+              </div>
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+              <h1 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+                J.A Informática
+              </h1>
 
-    .container {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-    }
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+                Soluções em tecnologia com atendimento profissional, suporte confiável
+                e serviços especializados para computadores, redes, impressoras e
+                segurança eletrônica.
+              </p>
 
-    .topbar {
-      background: var(--dark);
-      color: #f3efe8;
-      font-size: 14px;
-      padding: 10px 0;
-      text-align: center;
-      letter-spacing: 0.4px;
-    }
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/5592999999999"
+                  className="rounded-2xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 shadow-lg transition hover:scale-105"
+                >
+                  Falar no WhatsApp
+                </a>
+                <a
+                  href="#servicos"
+                  className="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+                >
+                  Ver serviços
+                </a>
+              </div>
+            </div>
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(248, 246, 242, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
+            <div className="grid w-full max-w-md grid-cols-2 gap-4">
+              {highlights.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur"
+                >
+                  <p className="text-sm font-medium text-slate-200">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </header>
 
-    .nav {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
+      <main>
+        <section className="mx-auto max-w-7xl px-6 py-20">
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="rounded-3xl border border-white/10 bg-slate-900 p-8 shadow-xl lg:col-span-1">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                Sobre a empresa
+              </p>
+              <h2 className="mt-4 text-3xl font-bold">Tecnologia com compromisso</h2>
+              <p className="mt-4 leading-8 text-slate-300">
+                A J.A Informática oferece serviços de suporte e manutenção com foco
+                em qualidade, transparência e agilidade. Nosso objetivo é manter seus
+                equipamentos e sua estrutura funcionando com segurança e desempenho.
+              </p>
+            </div>
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-8 shadow-xl lg:col-span-2">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-6">
+                  <h3 className="text-xl font-bold">Missão</h3>
+                  <p className="mt-3 text-slate-300">
+                    Entregar soluções em informática com eficiência e confiança.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-6">
+                  <h3 className="text-xl font-bold">Diferencial</h3>
+                  <p className="mt-3 text-slate-300">
+                    Atendimento humanizado, diagnóstico claro e foco no resultado.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    .brand img {
-      width: 58px;
-      height: 58px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 2px solid var(--gold);
-      background: #fff;
-      padding: 4px;
-    }
+        <section id="servicos" className="bg-slate-900/60 py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mb-12 max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
+                Nossos serviços
+              </p>
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
+                Soluções completas para sua necessidade
+              </h2>
+              <p className="mt-4 leading-8 text-slate-300">
+                Uma estrutura visual moderna para apresentar os principais serviços da
+                J.A Informática com clareza e credibilidade.
+              </p>
+            </div>
 
-    .brand-text h1 {
-      font-size: 24px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {services.map((service) => (
+                <div
+                  key={service.title}
+                  className="group rounded-3xl border border-white/10 bg-slate-950 p-7 shadow-xl transition hover:-translate-y-1 hover:border-cyan-400/40"
+                >
+                  <div className="text-4xl">{service.icon}</div>
+                  <h3 className="mt-5 text-xl font-bold">{service.title}</h3>
+                  <p className="mt-3 leading-7 text-slate-300">{service.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    .brand-text p {
-      font-size: 13px;
-      color: var(--gray);
-      letter-spacing: 0.6px;
-    }
+        <section className="mx-auto max-w-7xl px-6 py-20">
+          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
+              <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">Atendimento</p>
+              <h3 className="mt-4 text-2xl font-bold">Fale com a J.A Informática</h3>
+              <p className="mt-4 leading-8 text-slate-300">
+                Use este espaço para colocar número oficial, endereço, Instagram e horários.
+              </p>
+            </div>
 
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
+            <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
+              <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">WhatsApp</p>
+              <p className="mt-4 text-lg font-semibold">(92) 99999-9999</p>
+              <p className="mt-3 text-slate-300">Atendimento rápido e direto.</p>
+            </div>
 
-    .nav-links a {
-      color: var(--dark);
-      font-weight: bold;
-      font-size: 15px;
-      transition: 0.3s;
-    }
+            <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
+              <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">Instagram</p>
+              <p className="mt-4 text-lg font-semibold">@ja.informatica</p>
+              <p className="mt-3 text-slate-300">Presença digital e confiança para sua marca.</p>
+            </div>
+          </div>
+        </section>
+      </main>
 
-    .nav-links a:hover {
-      color: var(--gold-strong);
-    }
-
-    .btn-whats {
-      background: #25d366;
-      color: white;
-      padding: 13px 22px;
-      border-radius: 999px;
-      font-weight: bold;
-      box-shadow: var(--shadow);
-      transition: 0.3s;
-      display: inline-block;
-    }
-
-    .btn-whats:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.03);
-    }
-
-    .hero {
-      padding: 72px 0 46px;
-      background:
-        radial-gradient(circle at top right, rgba(200,164,93,0.18), transparent 28%),
-        radial-gradient(circle at left center, rgba(200,164,93,0.10), transparent 20%),
-        linear-gradient(180deg, #fbfaf7 0%, #f6f1e8 100%);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(200,164,93,0.14);
-      color: #8b6a2a;
-      border: 1px solid rgba(200,164,93,0.32);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
-    }
-
-    .hero h2 {
-      font-size: 56px;
-      line-height: 1.05;
-      margin-bottom: 18px;
-      max-width: 700px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #4b5563;
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-main {
-      background: var(--dark
+      <footer className="border-t border-white/10 bg-slate-950">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 J.A Informática. Todos os direitos reservados.</p>
+          <p>Desenvolvido com foco em performance, clareza e presença profissional.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
